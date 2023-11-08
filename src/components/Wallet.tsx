@@ -1,11 +1,16 @@
 import { useEffect, useRef, useState } from "react";
 import SocialLogin from "@biconomy/web3-auth";
-import { ethers } from "ethers";
+import { ethers, providers } from "ethers";
 import { ChainId } from "@biconomy/core-types";
+import { BiconomySmartAccount } from "@biconomy/account";
 
 export default function Wallet() {
     const sdkRef = useRef<SocialLogin | null>(null);
     const [interval, enableInterval] = useState<boolean>(false);
+
+    const [loading, setLoading] = useState(false);
+    const [provider, setProvider] = useState<providers.Web3Provider>();
+    const [smartAccount, setSmartAccount] = useState<BiconomySmartAccount>();
 
     // login() function
     async function login() {
