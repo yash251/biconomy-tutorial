@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import SocialLogin from "@biconomy/web3-auth";
 import { ethers, providers } from "ethers";
 import { ChainId } from "@biconomy/core-types";
-import { BiconomySmartAccount } from "@biconomy/account";
+import { BiconomySmartAccount, BiconomySmartAccountConfig } from "@biconomy/account";
 
 export default function Wallet() {
     const sdkRef = useRef<SocialLogin | null>(null);
