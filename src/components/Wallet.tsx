@@ -31,7 +31,7 @@ export default function Wallet() {
           enableInterval(true);
         } else {
           console.log("hello");
-          //   setupSmartAccount();
+          setupSmartAccount();
         }
       }
     // setupSmartAccount() function
@@ -74,7 +74,7 @@ export default function Wallet() {
         if (interval) {
         configureLogin = setInterval(() => {
             if (!!sdkRef.current?.provider) {
-            // setupSmartAccount();
+            setupSmartAccount();
             clearInterval(configureLogin);
             }
         }, 1000);
