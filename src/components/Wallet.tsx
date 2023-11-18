@@ -80,4 +80,16 @@ export default function Wallet() {
         }, 1000);
         }
     }, [interval]);
+
+    async function logOut() {
+      // Log out of the smart account
+      await sdkRef.current?.logout();
+    
+      // Hide the wallet
+      sdkRef.current?.hideWallet();
+    
+      // Reset state and stop the interval if it was started
+      setSmartAccount(undefined);
+      enableInterval(false);
+    }
 }
