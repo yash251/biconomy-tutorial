@@ -92,4 +92,16 @@ export default function Wallet() {
       setSmartAccount(undefined);
       enableInterval(false);
     }
+  
+    return (
+      {/* Logout Button */}
+      {smartAccount && (
+        <button
+          onClick={logOut}
+          className="absolute right-0 m-3 rounded-lg bg-gradient-to-r from-green-400 to-blue-500 px-4 py-2 font-medium transition-all hover:from-green-500 hover:to-blue-600 "
+        >
+          Logout
+        </button>
+      )}
+    )
 }
