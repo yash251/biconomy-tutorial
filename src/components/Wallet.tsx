@@ -103,5 +103,11 @@ export default function Wallet() {
           Logout
         </button>
       )}
+
+      <div className="m-auto flex h-screen flex-col items-center justify-center gap-10 bg-gray-950">
+        <h1 className=" text-4xl text-gray-50 font-bold tracking-tight lg:text-5xl">
+          Send ERC20 using ERC20
+        </h1>
+      </div>
     )
 }
