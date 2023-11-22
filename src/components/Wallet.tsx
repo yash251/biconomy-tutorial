@@ -109,5 +109,15 @@ export default function Wallet() {
           Send ERC20 using ERC20
         </h1>
       </div>
+  
+      {/* Login Button */}
+      {!smartAccount && !loading && (
+        <button
+          onClick={login}
+          className="mt-10 rounded-lg bg-gradient-to-r from-green-400 to-blue-500 px-4 py-2 font-medium  transition-colors hover:from-green-500 hover:to-blue-600"
+        >
+          Login
+        </button>
+      )}
     )
 }
