@@ -119,5 +119,8 @@ export default function Wallet() {
           Login
         </button>
       )}
+      
+      {/* Loading state */}
+      {loading && <p>Loading account details...</p>}
     )
 }
