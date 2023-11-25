@@ -122,5 +122,9 @@ export default function Wallet() {
       
       {/* Loading state */}
       {loading && <p>Loading account details...</p>}
+
+      {smartAccount && (
+        <Fragment>{/* Add Transfer Component Here */}</Fragment>
+      )}
     )
 }
