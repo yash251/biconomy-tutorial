@@ -27,4 +27,19 @@ export default function Transfer({
   useEffect(() => {
     getSmartContractAddress();
   }, []);
+
+  async function transfer() {
+    try {
+      // Initiate the loading state
+      setIsLoading(true);
+  
+      // Create an Ethers Contract instance for USDC
+      const readProvider = smartAccount.provider;
+      const tokenContract = new ethers.Contract(
+        USDC_CONTRACT_ADDRESS,
+        ERC20ABI,
+        readProvider
+      );
+    }
+  }
 }
