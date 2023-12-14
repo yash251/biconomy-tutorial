@@ -40,6 +40,14 @@ export default function Transfer({
         ERC20ABI,
         readProvider
       );
+
+      // Fetch the amount of decimals in this ERC20 Contract
+      const decimals = await tokenContract.decimals();
+      // Convert the user inputted amount to the proper denomination unit based on the token decimals
+      const amountInLowestUnit = ethers.utils.parseUnits(
+        amount.toString(),
+        decimals
+      );
     }
   }
 }
