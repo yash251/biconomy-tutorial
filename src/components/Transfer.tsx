@@ -48,6 +48,14 @@ export default function Transfer({
         amount.toString(),
         decimals
       );
+
+      // Create the calldata for our UserOperation
+      const populatedTransferTxn =
+      await tokenContract.populateTransaction.transfer(
+        recipient,
+        amountInLowestUnit
+      );
+      const calldata = populatedTransferTxn.data;
     }
   }
 }
