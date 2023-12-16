@@ -56,6 +56,14 @@ export default function Transfer({
         amountInLowestUnit
       );
       const calldata = populatedTransferTxn.data;
+
+      // Build the UserOperation
+      const userOp = await smartAccount.buildUserOp([
+        {
+          to: USDC_CONTRACT_ADDRESS,
+          data: calldata,
+        },
+      ]);
     }
   }
 }
