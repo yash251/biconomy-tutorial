@@ -64,6 +64,21 @@ export default function Transfer({
           data: calldata,
         },
       ]);
+
+      // Get the paymaster fee quote from Biconomy
+      const biconomyPaymaster =
+      smartAccount.paymaster as IHybridPaymaster<SponsorUserOperationDto>;
+      const feeQuoteResponse =
+        await biconomyPaymaster.getPaymasterFeeQuotesOrData(userOp, {
+          mode: PaymasterMode.ERC20,
+          tokenList: [],
+          preferredToken: USDC_CONTRACT_ADDRESS,
+        });
+      const feeQuote = feeQuoteResponse.feeQuotes;
+      if (!feeQuote) throw new Error("Could not fetch fee quote in USDC");
+
+      const spender = feeQuoteResponse.tokenPaymasterAddress || "";
+      const selectedFeeQuote = feeQuote[0];
     }
   }
 }
