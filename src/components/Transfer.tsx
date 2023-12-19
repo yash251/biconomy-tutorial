@@ -79,6 +79,16 @@ export default function Transfer({
 
       const spender = feeQuoteResponse.tokenPaymasterAddress || "";
       const selectedFeeQuote = feeQuote[0];
+
+      // Build the paymaster userOp
+      let finalUserOp = await smartAccount.buildTokenPaymasterUserOp(userOp, {
+        feeQuote: selectedFeeQuote,
+        spender: spender,
+        maxApproval: true,
+      });
+    }
+    catch (err) {
+      console.error(err);
     }
   }
 }
