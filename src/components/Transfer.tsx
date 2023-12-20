@@ -86,6 +86,32 @@ export default function Transfer({
         spender: spender,
         maxApproval: true,
       });
+
+      // Get the calldata for the paymaster
+      const paymasterServiceData = {
+        mode: PaymasterMode.ERC20,
+        feeTokenAddress: USDC_CONTRACT_ADDRESS,
+        calculateGasLimits: true,
+      };
+      const paymasterAndDataResponse =
+        await biconomyPaymaster.getPaymasterAndData(
+          finalUserOp,
+          paymasterServiceData
+        );
+      finalUserOp.paymasterAndData = paymasterAndDataResponse.paymasterAndData;
+      
+      if (
+        paymasterAndDataResponse.callGasLimit &&
+        paymasterAndDataResponse.verificationGasLimit &&
+        paymasterAndDataResponse.preVerificationGas
+      ) {
+        // Returned gas limits must be replaced in your op as you update paymasterAndData.
+        // Because these are the limits paymaster service signed on to generate paymasterAndData
+
+        finalUserOp.callGasLimit = paymasterAndDataResponse.callGasLimit;
+        finalUserOp.verificationGasLimit = paymasterAndDataResponse.verificationGasLimit;
+        finalUserOp.preVerificationGas = paymasterAndDataResponse.preVerificationGas;
+      }
     }
     catch (err) {
       console.error(err);
