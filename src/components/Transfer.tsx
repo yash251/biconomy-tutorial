@@ -112,6 +112,13 @@ export default function Transfer({
         finalUserOp.verificationGasLimit = paymasterAndDataResponse.verificationGasLimit;
         finalUserOp.preVerificationGas = paymasterAndDataResponse.preVerificationGas;
       }
+
+      // Send the UserOperation
+      const userOpResponse = await smartAccount.sendUserOp(finalUserOp);
+      const receipt = await userOpResponse.wait();
+
+      console.log(`Transaction receipt: ${JSON.stringify(receipt, null, 2)}`);
+      window.alert("Transaction successful!");
     }
     catch (err) {
       console.error(err);
