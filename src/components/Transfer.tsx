@@ -123,5 +123,6 @@ export default function Transfer({
     catch (err) {
       console.error(err);
     }
+    setIsLoading(false);
   }
 }
